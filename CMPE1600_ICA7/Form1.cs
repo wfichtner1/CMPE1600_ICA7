@@ -19,6 +19,7 @@ namespace CMPE1600_ICA7
         bool red = true;
         bool blue = false;
         bool green = false;
+        int coorInc = 1;
         
         public Form1()
         {
@@ -52,8 +53,10 @@ namespace CMPE1600_ICA7
                     BlueBall();
                     break;
                 case Keys.R:
+                    RedBall();
                     break;
                 case Keys.G:
+                    GreenBall();
                     break;
                 case Keys.X:
                     break;
@@ -70,27 +73,91 @@ namespace CMPE1600_ICA7
 
         public void UpPress()
         {
-            yCoor -= 1;
-            canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+            yCoor -= coorInc;
+            yCoor = (yCoor < 0) ? 0 : yCoor;
+            if (red == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+            }
+            else if (blue == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Blue);
+            }
+            else if (green == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Green);
+            }
+
         }
         public void DownPress()
         {
-            yCoor += 1;
-            canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+            yCoor += coorInc;
+            yCoor = (yCoor > 29) ? 29 : yCoor;
+            if (red == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+            }
+            else if (blue == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Blue);
+            }
+            else if (green == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Green);
+            }
         }
         public void LeftPress()
         {
-            xCoor -= 1;
-            canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+            xCoor -= coorInc;
+            xCoor = (xCoor < 0) ? 0 : xCoor;
+            if (red == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+            }
+            else if (blue == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Blue);
+            }
+            else if (green == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Green);
+            }
         }
         public void RightPress()
         {
-            xCoor += 1;
-            canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+            xCoor += coorInc;
+            xCoor = (xCoor > 29) ? 29 : xCoor;
+            if (red == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+            }
+            else if (blue == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Blue);
+            }
+            else if (green == true)
+            {
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Green);
+            }
         }
         public void BlueBall()
         {
-
+            blue = true;
+            red = false;
+            green = false;
         }
+        public void GreenBall()
+        {
+            green = true;
+            red = false;
+            blue = false;
+        }
+        public void RedBall()
+        {
+            red = true;
+            blue = false;
+            green = false;
+        }
+       
     }
 }
