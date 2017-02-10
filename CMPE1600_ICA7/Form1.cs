@@ -58,6 +58,12 @@ namespace CMPE1600_ICA7
                 case Keys.G:
                     color = Color.Green;
                     break;
+                case Keys.P:
+                    color = Color.MediumPurple;
+                    break;
+                case Keys.Y:
+                    color = Color.Yellow;
+                    break;
                 case Keys.F1:
                     border = true;
                     break;
