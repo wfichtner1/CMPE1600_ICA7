@@ -16,9 +16,8 @@ namespace CMPE1600_ICA7
         CDrawer canvas = new CDrawer(600, 600);
         int xCoor = 15;
         int yCoor = 15;
-        bool red = true;
-        bool blue = false;
-        bool green = false;
+        Color color = Color.Red;
+        bool border = false;
         int coorInc = 1;
         
         public Form1()
@@ -58,13 +57,11 @@ namespace CMPE1600_ICA7
                 case Keys.G:
                     GreenBall();
                     break;
+                case Keys.F1:
+                    border = true;
+                    break;
                 case Keys.X:
-                    break;
-                case Keys.Shift:
-                    break;
-                case Keys.Alt:
-                    break;
-                case Keys.Control:
+                    this.Close();
                     break;
                 default:
                     break;
@@ -75,89 +72,85 @@ namespace CMPE1600_ICA7
         {
             yCoor -= coorInc;
             yCoor = (yCoor < 0) ? 0 : yCoor;
-            if (red == true)
+
+            if (border == false)
             {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color);
             }
-            else if (blue == true)
-            {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Blue);
-            }
-            else if (green == true)
-            {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Green);
-            }
+            else
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color, 1, Color.White);
 
         }
         public void DownPress()
         {
             yCoor += coorInc;
             yCoor = (yCoor > 29) ? 29 : yCoor;
-            if (red == true)
+            if (border == false)
             {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color);
             }
-            else if (blue == true)
-            {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Blue);
-            }
-            else if (green == true)
-            {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Green);
-            }
+            else
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color, 1, Color.White);
         }
         public void LeftPress()
         {
             xCoor -= coorInc;
             xCoor = (xCoor < 0) ? 0 : xCoor;
-            if (red == true)
+            if (border == false)
             {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color);
             }
-            else if (blue == true)
-            {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Blue);
-            }
-            else if (green == true)
-            {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Green);
-            }
+            else
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color, 1, Color.White);
         }
         public void RightPress()
         {
             xCoor += coorInc;
             xCoor = (xCoor > 29) ? 29 : xCoor;
-            if (red == true)
+            if (border == false)
             {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Red);
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color);
             }
-            else if (blue == true)
-            {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Blue);
-            }
-            else if (green == true)
-            {
-                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, Color.Green);
-            }
+            else
+                canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color, 1, Color.White);
         }
         public void BlueBall()
         {
-            blue = true;
-            red = false;
-            green = false;
+            color = Color.Blue;
         }
         public void GreenBall()
         {
-            green = true;
-            red = false;
-            blue = false;
+            color = Color.Green;
         }
         public void RedBall()
         {
-            red = true;
-            blue = false;
-            green = false;
+            color = Color.Red;
         }
-       
+
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.Shift)
+            {
+                coorInc = 2;
+            }
+            else if (e.Alt)
+            {
+                coorInc = 4;
+            }
+            else if (e.Control)
+            {
+                coorInc = 3;
+            }
+            else
+                coorInc = 1;
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.F1)
+            {
+                border = false;
+            }
+        }
     }
 }
