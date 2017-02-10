@@ -24,14 +24,15 @@ namespace CMPE1600_ICA7
         {
             InitializeComponent();
         }
-
+        //Initializes gdi canvas and puts a first dot
         private void Form1_Load(object sender, EventArgs e)
         {
             
             canvas.Scale = 20;
             canvas.AddCenteredEllipse(15, 15, 1, 1, Color.Red);
         }
-
+        //Checks what key was pressed, and sends for
+        //methods based on that key
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             switch(e.KeyCode)
@@ -49,13 +50,13 @@ namespace CMPE1600_ICA7
                     DownPress();
                     break;
                 case Keys.B:
-                    BlueBall();
+                    color = Color.Blue;
                     break;
                 case Keys.R:
-                    RedBall();
+                    color = Color.Red;
                     break;
                 case Keys.G:
-                    GreenBall();
+                    color = Color.Green;
                     break;
                 case Keys.F1:
                     border = true;
@@ -67,7 +68,7 @@ namespace CMPE1600_ICA7
                     break;
             }
         }
-
+        //Draws circle one coor up
         public void UpPress()
         {
             yCoor -= coorInc;
@@ -81,6 +82,7 @@ namespace CMPE1600_ICA7
                 canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color, 1, Color.White);
 
         }
+        //Draws circle one coor down
         public void DownPress()
         {
             yCoor += coorInc;
@@ -92,6 +94,7 @@ namespace CMPE1600_ICA7
             else
                 canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color, 1, Color.White);
         }
+        //Draws circle one coor left
         public void LeftPress()
         {
             xCoor -= coorInc;
@@ -103,6 +106,7 @@ namespace CMPE1600_ICA7
             else
                 canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color, 1, Color.White);
         }
+        //Draws circle one coor right
         public void RightPress()
         {
             xCoor += coorInc;
@@ -114,19 +118,9 @@ namespace CMPE1600_ICA7
             else
                 canvas.AddCenteredEllipse(xCoor, yCoor, 1, 1, color, 1, Color.White);
         }
-        public void BlueBall()
-        {
-            color = Color.Blue;
-        }
-        public void GreenBall()
-        {
-            color = Color.Green;
-        }
-        public void RedBall()
-        {
-            color = Color.Red;
-        }
-
+        //Checks if ctrl, alt, or shift are held down
+        //changes coor shift appropriately
+        //Resets once key is lifted
         private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.Shift)
@@ -144,7 +138,7 @@ namespace CMPE1600_ICA7
             else
                 coorInc = 1;
         }
-
+        //Checks that F1 is no longer pressed
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.F1)
